@@ -1,0 +1,34 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #222;
+  color: white;
+}
+
+#players {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.hand {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 100px;
+  height: 140px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
