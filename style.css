@@ -1,56 +1,55 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fundo com imagem */
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #2c1f3c url('assets/backGround.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #e0d9ff; /* tom roxo claro */
-  margin: 0;
-  padding: 0;
+    height: 100vh;
+    background: url('assets/backGround.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.hidden {
-  display: none;
+/* Menu centralizado */
+#menu {
+    background: rgba(50, 0, 80, 0.7); /* roxo semi-transparente */
+    padding: 40px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
-button {
-  background-color: #6a4ba4;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
-  border-radius: 6px;
-  font-size: 1em;
+/* Título do jogo */
+#menu h1 {
+    color: #c0a0ff; /* roxo claro */
+    font-size: 48px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 8px #000;
 }
 
-button:hover {
-  background-color: #8e65d0;
+/* Botões */
+#menu button {
+    display: block;
+    width: 220px;
+    margin: 15px auto;
+    padding: 15px;
+    font-size: 20px;
+    color: #fff;
+    background: linear-gradient(135deg, #6a0dad, #4b0082); /* roxo para azul */
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-#players {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.hand {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.card {
-  width: 100px;
-  height: 140px;
-  border: 2px solid #fff;
-  border-radius: 8px;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.1);
+#menu button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
