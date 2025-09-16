@@ -25,22 +25,33 @@ closeModal.addEventListener('click', () => {
     baralhosModal.style.display = 'none';
 });
 
+// Função para carregar decks do localStorage
 function loadDecks() {
     deckList.innerHTML = '';
     const decks = JSON.parse(localStorage.getItem('decks') || '[]');
     decks.forEach((deck, index) => {
         const li = document.createElement('li');
         li.textContent = deck.name;
-        // botão de renomear
+
+        // botão renomear
         const renameBtn = document.createElement('button');
         renameBtn.textContent = 'Renomear';
         renameBtn.style.marginLeft = '10px';
         renameBtn.addEventListener('click', () => renameDeck(index));
         li.appendChild(renameBtn);
+
+        // botão deletar
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Excluir';
+        deleteBtn.style.marginLeft = '5px';
+        deleteBtn.addEventListener('click', () => deleteDeck(index));
+        li.appendChild(deleteBtn);
+
         deckList.appendChild(li);
     });
 }
 
+// Renomear deck
 function renameDeck(index) {
     const newName = prompt('Novo nome do baralho:');
     if(newName) {
@@ -51,17 +62,45 @@ function renameDeck(index) {
     }
 }
 
-saveDeck.addEventListener('click', () => {
+// Deletar deck
+function deleteDeck(index) {
+    if(confirm('Deseja realmente excluir este deck?')) {
+        const decks = JSON.parse(localStorage.getItem('decks') || '[]');
+        decks.splice(index, 1);
+        localStorage.setItem('decks', JSON.stringify(decks));
+        loadDecks();
+    }
+}
+
+// Salvar deck
+saveDeck.addEventListener('click', async () => {
     const name = document.getElementById('deckName').value;
     const files = document.getElementById('deckFiles').files;
-    if(!name || files.length === 0) return alert('Preencha nome e selecione a pasta');
+    if(!name || files.length === 0) return alert('Preencha nome e selecione imagens');
 
-    const paths = Array.from(files).map(f => f.name); // apenas nomes, não caminhos completos
     const decks = JSON.parse(localStorage.getItem('decks') || '[]');
-    decks.push({name, cards: paths});
+
+    // Converter imagens em Base64
+    const cards = [];
+    for (let file of files) {
+        const base64 = await fileToBase64(file);
+        cards.push({name: file.name, data: base64});
+    }
+
+    decks.push({name, cards});
     localStorage.setItem('decks', JSON.stringify(decks));
+
     document.getElementById('deckName').value = '';
     document.getElementById('deckFiles').value = '';
     loadDecks();
 });
 
+// Função auxiliar para converter arquivo em Base64
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
