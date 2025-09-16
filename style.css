@@ -56,4 +56,63 @@ body {
 #menu button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+	
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: rgba(50, 0, 80, 0.95);
+    padding: 30px 50px;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="file"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+}
+
+.modal-content button {
+    padding: 12px 25px;
+    margin: 10px;
+    font-size: 18px;
+    background: linear-gradient(135deg, #6a0dad, #4b0082);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.modal-content ul {
+    list-style: none;
+    margin-top: 15px;
+    padding: 0;
+    text-align: left;
+}
+
+.modal-content li {
+    margin: 5px 0;
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
 }
