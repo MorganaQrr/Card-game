@@ -1,8 +1,30 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: #222;
-  color: white;
+  background: #2c1f3c url('assets/backGround.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #e0d9ff; /* tom roxo claro */
+  margin: 0;
+  padding: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  background-color: #6a4ba4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: #8e65d0;
 }
 
 #players {

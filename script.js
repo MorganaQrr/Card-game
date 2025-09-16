@@ -1,7 +1,20 @@
 let decks = { player1: [], player2: [] };
 let hands = { player1: [], player2: [] };
 let currentPlayer = "player1";
-let cardBack = "https://i.imgur.com/Aed52eU.jpeg"; // verso padrão
+let cardBack = "assets/card-back.jpg"; // verso padrão
+
+// Menu inicial
+document.getElementById("startBtn").addEventListener("click", () => {
+  document.getElementById("menu").classList.add("hidden");
+  document.getElementById("deck-builder").classList.remove("hidden");
+  document.getElementById("game").classList.remove("hidden");
+});
+
+// Entrar em link de desafio
+document.getElementById("joinBtn").addEventListener("click", () => {
+  const link = document.getElementById("challengeLink").value;
+  alert("Funcionalidade de desafio ainda precisa ser implementada. Link: " + link);
+});
 
 // Importar imagens da pasta
 document.getElementById("deckInput").addEventListener("change", (e) => {
@@ -41,10 +54,14 @@ function renderHands() {
     hands[player].forEach((card, index) => {
       const div = document.createElement("div");
       div.classList.add("card");
-      div.style.backgroundImage = `url(${card.flipped ? cardBack : card.front})`;
+      // O adversário só vê o verso das cartas
+      const isOwner = (player === currentPlayer);
+      div.style.backgroundImage = `url(${isOwner ? card.front : cardBack})`;
       div.onclick = () => {
-        hands[player][index].flipped = !hands[player][index].flipped;
-        renderHands();
+        if (isOwner) {
+          hands[player][index].flipped = !hands[player][index].flipped;
+          renderHands();
+        }
       };
       handDiv.appendChild(div);
     });
